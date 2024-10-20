@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Main from "./pages/main";
+import Header from "./components/header";
+import Footer from "./components/footer";
+import Cart from "./pages/cart";
+import Contacts from "./pages/contacts";
 
 function App() {
+  const currentPage = window.location.pathname.includes("cart")
+    ? "cart"
+    : "main";
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Main currentPage={currentPage} />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/contacts" element={<Contacts />} />
+      </Routes>
+      <Footer />
     </div>
   );
 }
